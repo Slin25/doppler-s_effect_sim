@@ -39,57 +39,59 @@ def dopplerShift(sourceV, detectV,ogF):
 def configNewFText():
     labelNF.config(text = "Frequency: " + str(dopplerShift(sliderS.get(), sliderD.get(), sliderF.get())) + " Hz")
 
-root = Tk()
-so = Frame(master = root)
-source = Frame(master = root)
-detector = Frame(master = root)
-global velS
-global velD
-global sound
-global labelNF
-velS = IntVar()
-velD = IntVar()
-sound = IntVar()
+def main():
+    root = Tk()
+    so = Frame(master = root)
+    source = Frame(master = root)
+    detector = Frame(master = root)
+    global velS
+    global velD
+    global sound
+    global labelNF
+    velS = IntVar()
+    velD = IntVar()
+    sound = IntVar()
 
-# Image
-img = ImageTk.PhotoImage(Image.open("lab.jpg").resize((859, 200)))
-panel = Label(root, image = img)
-panel.pack(fill = BOTH, expand = True)
+    # Image
+    img = ImageTk.PhotoImage(Image.open("lab.jpg").resize((859, 200)))
+    panel = Label(root, image = img)
+    panel.pack(fill = BOTH, expand = True)
 
-# Frequency Configurations
-labelF = Label(so, text = "Change Frequency of the Source Sound (Hz):")
-sliderF = Scale(so, variable = sound, from_ = 100, to = 2000, orient = HORIZONTAL)
+    # Frequency Configurations
+    labelF = Label(so, text = "Change Frequency of the Source Sound (Hz):")
+    sliderF = Scale(so, variable = sound, from_ = 100, to = 2000, orient = HORIZONTAL)
 
-# Source Configurations
-labelS = Label(source, text = "Change Velocity of Source (m/s):")
-dirS = Label(source, text = "{a:<20}{b:>20}".format(a = "Toward Detector", b = "Away from Detector"))
-sliderS = Scale(source, variable = velS, from_ = -20, to = 20, orient = HORIZONTAL)
+    # Source Configurations
+    labelS = Label(source, text = "Change Velocity of Source (m/s):")
+    dirS = Label(source, text = "{a:<20}{b:>20}".format(a = "Toward Detector", b = "Away from Detector"))
+    sliderS = Scale(source, variable = velS, from_ = -20, to = 20, orient = HORIZONTAL)
 
-# Detector Configurations
-labelD = Label(detector, text = "Change Velocity of Detector (m/s):")
-dirD = Label(detector, text = "{a:<20}{b:>20}".format(a = "Away from Source", b = "Toward Source"))
-sliderD = Scale(detector, variable = velD, from_ = -20, to = 20, orient = HORIZONTAL)
+    # Detector Configurations
+    labelD = Label(detector, text = "Change Velocity of Detector (m/s):")
+    dirD = Label(detector, text = "{a:<20}{b:>20}".format(a = "Away from Source", b = "Toward Source"))
+    sliderD = Scale(detector, variable = velD, from_ = -20, to = 20, orient = HORIZONTAL)
 
-labelNF = Label(root, text = "Frequency: " + str(dopplerShift(sliderS.get(), sliderD.get(), sliderF.get())) + " Hz")
-# Button to Run
-button = Button(root, text = "Run", command = lambda:[realTimeAudio(), configNewFText()])
+    labelNF = Label(root, text = "Frequency: " + str(dopplerShift(sliderS.get(), sliderD.get(), sliderF.get())) + " Hz")
+    # Button to Run
+    button = Button(root, text = "Run", command = lambda:[realTimeAudio(), configNewFText()])
 
-so.pack(fill = BOTH, expand = True)
-labelF.pack(fill = BOTH, expand = True)
-sliderF.pack(fill = BOTH, expand = True)
+    so.pack(fill = BOTH, expand = True)
+    labelF.pack(fill = BOTH, expand = True)
+    sliderF.pack(fill = BOTH, expand = True)
 
-source.pack(fill = BOTH, expand = True)
-detector.pack(fill = BOTH, expand = True)
+    source.pack(fill = BOTH, expand = True)
+    detector.pack(fill = BOTH, expand = True)
 
-labelS.pack(fill = BOTH, expand = True)
-dirS.pack(fill = BOTH, expand = True)
-sliderS.pack(fill = BOTH, expand = True)
+    labelS.pack(fill = BOTH, expand = True)
+    dirS.pack(fill = BOTH, expand = True)
+    sliderS.pack(fill = BOTH, expand = True)
 
-labelD.pack(fill = BOTH, expand = True)
-dirD.pack(fill = BOTH, expand = True)
-sliderD.pack(fill = BOTH, expand = True)
+    labelD.pack(fill = BOTH, expand = True)
+    dirD.pack(fill = BOTH, expand = True)
+    sliderD.pack(fill = BOTH, expand = True)
 
-button.pack(fill = BOTH, expand = True)
-labelNF.pack(fill = BOTH, expand = True)
+    button.pack(fill = BOTH, expand = True)
+    labelNF.pack(fill = BOTH, expand = True)
 
-mainloop()
+if __name__ == "__main__":
+    main()
